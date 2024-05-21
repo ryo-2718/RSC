@@ -22,12 +22,16 @@ function toggleChapter(chapter) {
             allChecked = false;
         }
     });
-    document.getElementById(`chapter_${chapter}`).checked = allChecked;
+
+    const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
+    chapterCheckbox.checked = allChecked;
     updateValue(`chapter_${chapter}`);
 
     checkboxes.forEach(checkbox => {
-        checkbox.checked = allChecked;
-        updateValue(checkbox.id);
+        if (!((checkbox.id === `H20_1` && chapter === 1) || (checkbox.id === `H20_2` && chapter === 2))) {
+            checkbox.checked = allChecked;
+            updateValue(checkbox.id);
+        }
     });
 }
 
@@ -39,7 +43,9 @@ function toggleYear(year) {
             allChecked = false;
         }
     });
-    document.getElementById(year).checked = allChecked;
+
+    const yearCheckbox = document.getElementById(year);
+    yearCheckbox.checked = allChecked;
     updateValue(year);
 
     checkboxes.forEach(checkbox => {
