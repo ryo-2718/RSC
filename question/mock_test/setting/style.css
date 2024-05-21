@@ -1,0 +1,9 @@
+.checkbox-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.checkbox-grid label {
+  width: calc(20% - 10px);
+}
