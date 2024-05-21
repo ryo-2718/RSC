@@ -24,8 +24,8 @@ function toggleChapter(chapter) {
     const isChecked = document.getElementById(`chapter_${chapter}`).checked;
     const checkboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
     checkboxes.forEach(checkbox => {
-        // 特定のパターンに一致する場合は変更を加えない
-        if (!checkbox.id.endsWith(`_${chapter}_${chapter}`)) {
+        // チェックボックスのidがH20_1またはH20_2の場合は変更を加えない
+        if (!((checkbox.id === `H20_1` && chapter === 1) || (checkbox.id === `H20_2` && chapter === 2))) {
             checkbox.checked = isChecked;
             updateValue(checkbox.id);
         }
