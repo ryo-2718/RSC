@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模擬テスト - 登録販売者試験 過去問道場</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>登録販売者試験 過去問道場</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="mock_test.html">模擬テスト</a></li>
+                <li><a href="single_question.html">一問一答</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>模擬テスト</h2>
+        <div id="timer">残り時間: <span id="timer-display">120:00</span></div>
+        <div id="test-container">
+            <button id="start-button" onclick="startTest()">テスト開始</button>
+        </div>
+        <div id="question-container"></div>
+        <div id="result-container" style="display:none;">
+            <h3>テスト結果</h3>
+            <p>スコア: <span id="score"></span> / <span id="total"></span></p>
+            <table id="result-table">
+                <thead>
+                    <tr>
+                        <th>質問番号</th>
+                        <th>あなたの答え</th>
+                        <th>正しい答え</th>
+                        <th>結果</th>
+                    </tr>
+                </thead>
+                <tbody id="result-table-body"></tbody>
+            </table>
+        </div>
+        <div id="toggle-result-container" style="display:none;">
+            <button id="toggle-result" onclick="toggleResult()">結果を表示</button>
+        </div>
+    </main>
+    <script src="test.js"></script>
+    <script src="questions.js"></script>
+</body>
+</html>
