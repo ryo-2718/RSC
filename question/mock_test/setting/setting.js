@@ -25,8 +25,9 @@ function updateValue(id) {
             if (chapterCheckbox) {
                 const relatedCheckboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
                 const allChecked = Array.from(relatedCheckboxes).every(cb => cb.checked);
+                const someChecked = Array.from(relatedCheckboxes).some(cb => cb.checked);
                 chapterCheckbox.checked = allChecked;
-                values[`chapter_${chapter}`] = allChecked;
+                values[`chapter_${chapter}`] = someChecked;
             }
         }
 
@@ -36,8 +37,9 @@ function updateValue(id) {
         if (yearCheckbox) {
             const yearRelatedCheckboxes = document.querySelectorAll(`input[id^="${year}_"]`);
             const allChecked = Array.from(yearRelatedCheckboxes).every(cb => cb.checked);
+            const someChecked = Array.from(yearRelatedCheckboxes).some(cb => cb.checked);
             yearCheckbox.checked = allChecked;
-            values[year] = allChecked;
+            values[year] = someChecked;
         }
 
         console.log(values); // デバッグ用にコンソールに表示
@@ -75,6 +77,7 @@ window.onload = () => {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         values[checkbox.id] = checkbox.checked;
+        checkbox.addEventListener('change', () => updateValue(checkbox.id));
     });
     console.log(values); // デバッグ用にコンソールに表示
 };
