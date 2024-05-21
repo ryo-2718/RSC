@@ -20,7 +20,7 @@ function updateValue(id) {
 
 function toggleChapter(chapter) {
     const isChecked = document.getElementById(`chapter_${chapter}`).checked;
-    const checkboxes = document.querySelectorAll(`input[id^="${chapter}"]:not(#chapter_${chapter})`);
+    const checkboxes = document.querySelectorAll(`input[id^="${chapter}"]`);
     checkboxes.forEach(checkbox => {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
