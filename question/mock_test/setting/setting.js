@@ -1,5 +1,6 @@
 const values = {};
 
+// 行を生成する関数
 function generateRows(years) {
     return years.map(year => `
         <tr>
@@ -16,18 +17,6 @@ function generateRows(years) {
 function updateValue(id) {
     const checkbox = document.getElementById(id);
     values[id] = checkbox.checked;
-    const parts = id.split('_');
-    const year = parts[0];
-    const chapter = parts[1];
-    
-    // 対応する章のチェックボックスの状態を更新
-    const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
-    chapterCheckbox.checked = areAllChaptersChecked(year);
-    
-    // 対応する年代のチェックボックスの状態を更新
-    const yearCheckbox = document.getElementById(year);
-    yearCheckbox.checked = areAllYearsChecked(chapter);
-
     console.log(values); // デバッグ用にコンソールに表示
 }
 
@@ -49,25 +38,7 @@ function toggleYear(year) {
     }
 }
 
-function areAllChaptersChecked(year) {
-    for (let i = 1; i <= 5; i++) {
-        if (!values[`${year}_${i}`]) {
-            return false;
-        }
-    }
-    return true;
-}
-
-function areAllYearsChecked(chapter) {
-    const years = ['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
-    for (const year of years) {
-        if (!values[`${year}_${chapter}`]) {
-            return false;
-        }
-    }
-    return true;
-}
-
+// ページが読み込まれたときの初期設定
 window.onload = () => {
     const years = ['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
     const tableBody = document.getElementById('table-body');
