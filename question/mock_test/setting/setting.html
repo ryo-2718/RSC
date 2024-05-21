@@ -19,41 +19,22 @@
     </header>
     <main>
         <h2>設定</h2>
-        <form id="settings-form">
-            <div>
-                <label>
-                    <input type="checkbox" id="mock-test-mode" onchange="toggleMockTestMode()">
-                    模擬試験モード
-                </label>
-            </div>
-            <h3>章の選択</h3>
-            <div id="chapters" class="checkbox-grid">
-                <label><input type="checkbox" name="chapter" value="1" checked> 一章</label>
-                <label><input type="checkbox" name="chapter" value="2" checked> 二章</label>
-                <label><input type="checkbox" name="chapter" value="3" checked> 三章</label>
-                <label><input type="checkbox" name="chapter" value="4" checked> 四章</label>
-                <label><input type="checkbox" name="chapter" value="5" checked> 五章</label>
-            </div>
-            <h3>年代の選択</h3>
-            <div id="years" class="checkbox-grid">
-                <label><input type="checkbox" name="year" value="H20-1" checked> H20-1</label>
-                <label><input type="checkbox" name="year" value="H20-2" checked> H20-2</label>
-                <label><input type="checkbox" name="year" value="H21" checked> H21</label>
-                <label><input type="checkbox" name="year" value="H22" checked> H22</label>
-                <label><input type="checkbox" name="year" value="H23" checked> H23</label>
-                <label><input type="checkbox" name="year" value="H24" checked> H24</label>
-                <label><input type="checkbox" name="year" value="H25" checked> H25</label>
-                <label><input type="checkbox" name="year" value="H26" checked> H26</label>
-                <label><input type="checkbox" name="year" value="H27" checked> H27</label>
-                <label><input type="checkbox" name="year" value="H28" checked> H28</label>
-                <label><input type="checkbox" name="year" value="H29" checked> H29</label>
-                <label><input type="checkbox" name="year" value="H30" checked> H30</label>
-                <label><input type="checkbox" name="year" value="R1" checked> R1</label>
-                <label><input type="checkbox" name="year" value="R2" checked> R2</label>
-                <label><input type="checkbox" name="year" value="R3" checked> R3</label>
-                <label><input type="checkbox" name="year" value="R4" checked> R4</label>
-            </div>
-        </form>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>1章</th>
+                    <th>2章</th>
+                    <th>3章</th>
+                    <th>4章</th>
+                    <th>5章</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- 年代と章の組み合わせ -->
+                ${generateRows(['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'])}
+            </tbody>
+        </table>
     </main>
     <script src="setting.js"></script>
 </body>
