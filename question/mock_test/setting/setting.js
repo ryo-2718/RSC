@@ -5,11 +5,11 @@ function generateRows(years) {
     return years.map(year => `
         <tr>
             <td>${year} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
-            <td><input type="checkbox" id="${year}$1" onchange="updateValue('${year}$1')"></td>
-            <td><input type="checkbox" id="${year}$2" onchange="updateValue('${year}$2')"></td>
-            <td><input type="checkbox" id="${year}$3" onchange="updateValue('${year}$3')"></td>
-            <td><input type="checkbox" id="${year}$4" onchange="updateValue('${year}$4')"></td>
-            <td><input type="checkbox" id="${year}$5" onchange="updateValue('${year}$5')"></td>
+            <td><input type="checkbox" id="${year}1" onchange="updateValue('${year}1')"></td>
+            <td><input type="checkbox" id="${year}2" onchange="updateValue('${year}2')"></td>
+            <td><input type="checkbox" id="${year}3" onchange="updateValue('${year}3')"></td>
+            <td><input type="checkbox" id="${year}4" onchange="updateValue('${year}4')"></td>
+            <td><input type="checkbox" id="${year}5" onchange="updateValue('${year}5')"></td>
         </tr>
     `).join('');
 }
@@ -21,8 +21,8 @@ function updateValue(id) {
 }
 
 function toggleChapter(chapter) {
-    const isChecked = document.getElementById(`chapter$${chapter}`).checked;
-    const checkboxes = document.querySelectorAll(`input[id$="$${chapter}"]`);
+    const isChecked = document.getElementById(`chapter${chapter}`).checked;
+    const checkboxes = document.querySelectorAll(`input[id$="${chapter}"]`);
     checkboxes.forEach(checkbox => {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
@@ -32,7 +32,7 @@ function toggleChapter(chapter) {
 function toggleYear(year) {
     const isChecked = document.getElementById(year).checked;
     for (let i = 1; i <= 5; i++) {
-        const checkbox = document.getElementById(`${year}$${i}`);
+        const checkbox = document.getElementById(`${year}${i}`);
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     }
