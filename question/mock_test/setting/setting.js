@@ -14,42 +14,47 @@ function generateRows(years) {
     `).join('');
 }
 
+function updateValue(id) {
+    const checkbox = document.getElementById(id);
+    values[id] = checkbox.checked;
+
+    // 章のチェックボックスの状態を更新
+    for (let chapter = 1; chapter <= 5; chapter++) {
+        const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
+        const relatedCheckboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
+        const allChecked = Array.from(relatedCheckboxes).every(cb => cb.checked);
+        chapterCheckbox.checked = allChecked;
+        values[`chapter_${chapter}`] = allChecked;
+    }
+
+    // 年代のチェックボックスの状態を更新
+    const year = id.split('_')[0];
+    const yearCheckbox = document.getElementById(year);
+    const yearRelatedCheckboxes = document.querySelectorAll(`input[id^="${year}_"]`);
+    const allChecked = Array.from(yearRelatedCheckboxes).every(cb => cb.checked);
+    yearCheckbox.checked = allChecked;
+    values[year] = allChecked;
+
+    console.log(values); // デバッグ用にコンソールに表示
+}
+
 function toggleChapter(chapter) {
+    const isChecked = document.getElementById(`chapter_${chapter}`).checked;
     const checkboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
-    let allChecked = true;
     checkboxes.forEach(checkbox => {
-        if (!checkbox.checked) {
-            allChecked = false;
-        }
-    });
-
-    const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
-    chapterCheckbox.checked = allChecked;
-    updateValue(`chapter_${chapter}`);
-
-    checkboxes.forEach(checkbox => {
+        // チェックボックスのidがH20_1またはH20_2の場合は変更を加えない
         if (!((checkbox.id === `H20_1` && chapter === 1) || (checkbox.id === `H20_2` && chapter === 2))) {
-            checkbox.checked = allChecked;
+            checkbox.checked = isChecked;
             updateValue(checkbox.id);
         }
     });
 }
 
 function toggleYear(year) {
+    const isChecked = document.getElementById(year).checked;
     const checkboxes = document.querySelectorAll(`input[id^="${year}_"]`);
-    let allChecked = true;
     checkboxes.forEach(checkbox => {
-        if (!checkbox.checked) {
-            allChecked = false;
-        }
-    });
-
-    const yearCheckbox = document.getElementById(year);
-    yearCheckbox.checked = allChecked;
-    updateValue(year);
-
-    checkboxes.forEach(checkbox => {
-        checkbox.checked = allChecked;
+        checkbox.checked = isChecked;
         updateValue(checkbox.id);
     });
 }
