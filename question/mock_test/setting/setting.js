@@ -5,11 +5,11 @@ function generateRows(years) {
     return years.map(year => `
         <tr>
             <td>${year.replace('$', '-')}</td>
-            <td><input type="checkbox" id="${year}_1" onchange="updateValue('${year}_1')"></td>
-            <td><input type="checkbox" id="${year}_2" onchange="updateValue('${year}_2')"></td>
-            <td><input type="checkbox" id="${year}_3" onchange="updateValue('${year}_3')"></td>
-            <td><input type="checkbox" id="${year}_4" onchange="updateValue('${year}_4')"></td>
-            <td><input type="checkbox" id="${year}_5" onchange="updateValue('${year}_5')"></td>
+            <td><input type="checkbox" id="${year}-1" onchange="updateValue('${year}-1')"></td>
+            <td><input type="checkbox" id="${year}-2" onchange="updateValue('${year}-2')"></td>
+            <td><input type="checkbox" id="${year}-3" onchange="updateValue('${year}-3')"></td>
+            <td><input type="checkbox" id="${year}-4" onchange="updateValue('${year}-4')"></td>
+            <td><input type="checkbox" id="${year}-5" onchange="updateValue('${year}-5')"></td>
         </tr>
     `).join('');
 }
@@ -19,19 +19,16 @@ function updateValue(id) {
     if (checkbox) {
         values[id] = checkbox.checked;
 
-        // 年代のチェックボックスの状態を更新
-        const year = id.split('_')[0];
-        const yearCheckboxes = document.querySelectorAll(`input[id^="${year}_"]`);
-        const allCheckedInYear = Array.from(yearCheckboxes).every(cb => cb.checked);
-        document.getElementById(year).checked = allCheckedInYear;
-        values[year] = allCheckedInYear;
+        const [year, chapter] = id.split('-');
+        const allChecked = ['1', '2', '3', '4', '5'].every(num => {
+            return values[`${year}-${num}`];
+        });
+        document.getElementById(year).checked = allChecked;
 
-        // 章のチェックボックスの状態を更新
-        const chapter = id.split('_')[1];
-        const chapterCheckboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
-        const allCheckedInChapter = Array.from(chapterCheckboxes).every(cb => cb.checked);
-        document.getElementById(`chapter_${chapter}`).checked = allCheckedInChapter;
-        values[`chapter_${chapter}`] = allCheckedInChapter;
+        const allChaptersChecked = ['1', '2', '3', '4', '5'].every(num => {
+            return values[`${year}-${num}`];
+        });
+        document.getElementById(`chapter_${chapter}`).checked = allChaptersChecked;
 
         console.log(values); // デバッグ用にコンソールに表示
     }
@@ -39,7 +36,7 @@ function updateValue(id) {
 
 function toggleChapter(chapter) {
     const isChecked = document.getElementById(`chapter_${chapter}`).checked;
-    document.querySelectorAll(`input[id$="_${chapter}"]`).forEach(checkbox => {
+    document.querySelectorAll(`input[id$="-${chapter}"]`).forEach(checkbox => {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     });
@@ -47,7 +44,7 @@ function toggleChapter(chapter) {
 
 function toggleYear(year) {
     const isChecked = document.getElementById(year).checked;
-    document.querySelectorAll(`input[id^="${year}_"]`).forEach(checkbox => {
+    document.querySelectorAll(`input[id^="${year}-"]`).forEach(checkbox => {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     });
