@@ -1,10 +1,9 @@
 const values = {};
 
-// 行を生成する関数
 function generateRows(years) {
     return years.map(year => `
         <tr>
-            <td>${year} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
+            <td>${year.replace('$', '-')} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
             <td><input type="checkbox" id="${year}_1" onchange="updateValue('${year}_1')"></td>
             <td><input type="checkbox" id="${year}_2" onchange="updateValue('${year}_2')"></td>
             <td><input type="checkbox" id="${year}_3" onchange="updateValue('${year}_3')"></td>
@@ -19,38 +18,31 @@ function updateValue(id) {
     if (checkbox) {
         values[id] = checkbox.checked;
 
-        // 章のチェックボックスの状態を更新
         for (let chapter = 1; chapter <= 5; chapter++) {
             const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
             if (chapterCheckbox) {
                 const relatedCheckboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
-                const allChecked = Array.from(relatedCheckboxes).every(cb => cb.checked);
-                const someChecked = Array.from(relatedCheckboxes).some(cb => cb.checked);
-                chapterCheckbox.checked = allChecked;
-                values[`chapter_${chapter}`] = someChecked;
+                chapterCheckbox.checked = Array.from(relatedCheckboxes).every(cb => cb.checked);
+                values[`chapter_${chapter}`] = chapterCheckbox.checked;
             }
         }
 
-        // 年代のチェックボックスの状態を更新
         const year = id.split('_')[0];
         const yearCheckbox = document.getElementById(year);
         if (yearCheckbox) {
             const yearRelatedCheckboxes = document.querySelectorAll(`input[id^="${year}_"]`);
-            const allChecked = Array.from(yearRelatedCheckboxes).every(cb => cb.checked);
-            const someChecked = Array.from(yearRelatedCheckboxes).some(cb => cb.checked);
-            yearCheckbox.checked = allChecked;
-            values[year] = someChecked;
+            yearCheckbox.checked = Array.from(yearRelatedCheckboxes).every(cb => cb.checked);
+            values[year] = yearCheckbox.checked;
         }
 
-        console.log(values); // デバッグ用にコンソールに表示
+        console.log(values);
     }
 }
 
 function toggleChapter(chapter) {
     const isChecked = document.getElementById(`chapter_${chapter}`).checked;
-    const checkboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
-    checkboxes.forEach(checkbox => {
-        if (checkbox && !((checkbox.id === `H20_1` && chapter === 1) || (checkbox.id === `H20_2` && chapter === 2))) {
+    document.querySelectorAll(`input[id$="_${chapter}"]`).forEach(checkbox => {
+        if (!(checkbox.id === `H20$1_${chapter}` || checkbox.id === `H20$2_${chapter}`)) {
             checkbox.checked = isChecked;
             updateValue(checkbox.id);
         }
@@ -59,25 +51,20 @@ function toggleChapter(chapter) {
 
 function toggleYear(year) {
     const isChecked = document.getElementById(year).checked;
-    const checkboxes = document.querySelectorAll(`input[id^="${year}_"]`);
-    checkboxes.forEach(checkbox => {
-        if (checkbox) {
-            checkbox.checked = isChecked;
-            updateValue(checkbox.id);
-        }
+    document.querySelectorAll(`input[id^="${year}_"]`).forEach(checkbox => {
+        checkbox.checked = isChecked;
+        updateValue(checkbox.id);
     });
 }
 
-// ページが読み込まれたときの初期設定
 window.onload = () => {
-    const years = ['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
-    const tableBody = document.getElementById('table-body');
-    tableBody.innerHTML = generateRows(years);
+    const years = ['H20$1', 'H20$2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
+    document.getElementById('table-body').innerHTML = generateRows(years);
 
-    const checkboxes = document.querySelectorAll('input[type="checkbox"]');
-    checkboxes.forEach(checkbox => {
+    document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
         values[checkbox.id] = checkbox.checked;
         checkbox.addEventListener('change', () => updateValue(checkbox.id));
     });
-    console.log(values); // デバッグ用にコンソールに表示
+
+    console.log(values);
 };
