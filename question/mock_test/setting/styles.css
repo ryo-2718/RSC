@@ -23,8 +23,8 @@ nav ul {
 }
 
 nav ul li {
-    display: inline;
-    margin: 0 10px;
+    display: inline-block; /* リンクの間に余白を追加 */
+    margin: 0 15px; /* リンクの間隔を調整 */
 }
 
 nav ul li a {
@@ -53,5 +53,5 @@ thead {
 }
 
 input[type="checkbox"] {
-    transform: scale(1.5);
+    transform: scale(1.8); /* チェックボックスの大きさを調整 */
 }
