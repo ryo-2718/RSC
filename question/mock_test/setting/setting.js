@@ -51,11 +51,11 @@ function toggleChapter(chapter) {
 
 function toggleYear(year) {
     const isChecked = document.getElementById(year).checked;
-    for (let i = 1; i <= 5; i++) {
-        const checkbox = document.getElementById(`${year}_${i}`);
+    const checkboxes = document.querySelectorAll(`input[id^="${year}_"]`);
+    checkboxes.forEach(checkbox => {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
-    }
+    });
     updateYearCheckbox(year);
 }
 
