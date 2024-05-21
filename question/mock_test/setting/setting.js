@@ -37,26 +37,28 @@ function updateValue(id) {
 }
 
 function toggleChapter(chapter) {
-    const isChecked = document.getElementById(`chapter_${chapter}`).checked;
     const checkboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
+    const anyUnchecked = Array.from(checkboxes).some(checkbox => !checkbox.checked);
+    const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
+    chapterCheckbox.checked = !anyUnchecked;
     checkboxes.forEach(checkbox => {
         // チェックボックスのidがH20_1またはH20_2の場合は変更を加えない
         if (!((checkbox.id === `H20_1` && chapter === 1) || (checkbox.id === `H20_2` && chapter === 2))) {
-            checkbox.checked = isChecked;
+            checkbox.checked = chapterCheckbox.checked;
             updateValue(checkbox.id);
         }
     });
-    updateChapterCheckbox(chapter);
 }
 
 function toggleYear(year) {
-    const isChecked = document.getElementById(year).checked;
     const checkboxes = document.querySelectorAll(`input[id^="${year}_"]`);
+    const anyUnchecked = Array.from(checkboxes).some(checkbox => !checkbox.checked);
+    const yearCheckbox = document.getElementById(year);
+    yearCheckbox.checked = !anyUnchecked;
     checkboxes.forEach(checkbox => {
-        checkbox.checked = isChecked;
+        checkbox.checked = yearCheckbox.checked;
         updateValue(checkbox.id);
     });
-    updateYearCheckbox(year);
 }
 
 // ページが読み込まれたときの初期設定
