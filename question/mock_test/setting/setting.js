@@ -24,8 +24,11 @@ function toggleChapter(chapter) {
     const isChecked = document.getElementById(`chapter_${chapter}`).checked;
     const checkboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
     checkboxes.forEach(checkbox => {
-        checkbox.checked = isChecked;
-        updateValue(checkbox.id);
+        // 特定のパターンに一致する場合は変更を加えない
+        if (!checkbox.id.endsWith(`_${chapter}_${chapter}`)) {
+            checkbox.checked = isChecked;
+            updateValue(checkbox.id);
+        }
     });
 }
 
