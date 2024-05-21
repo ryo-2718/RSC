@@ -22,11 +22,11 @@ function updateValue(id) {
     
     // 対応する章のチェックボックスの状態を更新
     const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
-    chapterCheckbox.checked = areAllChaptersChecked(chapter);
+    chapterCheckbox.checked = areAllChaptersChecked(year);
     
     // 対応する年代のチェックボックスの状態を更新
     const yearCheckbox = document.getElementById(year);
-    yearCheckbox.checked = areAllYearsChecked(year);
+    yearCheckbox.checked = areAllYearsChecked(chapter);
 
     console.log(values); // デバッグ用にコンソールに表示
 }
@@ -62,25 +62,6 @@ function areAllYearsChecked(chapter) {
     const years = ['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
     for (const year of years) {
         if (!values[`${year}_${chapter}`]) {
-            return false;
-        }
-    }
-    return true;
-}
-
-function areAllChaptersChecked(chapter) {
-    const years = ['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
-    for (const year of years) {
-        if (!values[`${year}_${chapter}`]) {
-            return false;
-        }
-    }
-    return true;
-}
-
-function areAllYearsChecked(year) {
-    for (let i = 1; i <= 5; i++) {
-        if (!values[`${year}_${i}`]) {
             return false;
         }
     }
