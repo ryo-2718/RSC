@@ -4,7 +4,7 @@ const values = {};
 function generateRows(years) {
     return years.map(year => `
         <tr>
-            <td>${year}</td>
+            <td>${year} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
             <td><input type="checkbox" id="${year}_1" onchange="updateValue('${year}_1')"></td>
             <td><input type="checkbox" id="${year}_2" onchange="updateValue('${year}_2')"></td>
             <td><input type="checkbox" id="${year}_3" onchange="updateValue('${year}_3')"></td>
@@ -18,6 +18,24 @@ function updateValue(id) {
     const checkbox = document.getElementById(id);
     values[id] = checkbox.checked;
     console.log(values); // デバッグ用にコンソールに表示
+}
+
+function toggleChapter(chapter) {
+    const isChecked = document.getElementById(`chapter_${chapter}`).checked;
+    const checkboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = isChecked;
+        updateValue(checkbox.id);
+    });
+}
+
+function toggleYear(year) {
+    const isChecked = document.getElementById(year).checked;
+    for (let i = 1; i <= 5; i++) {
+        const checkbox = document.getElementById(`${year}_${i}`);
+        checkbox.checked = isChecked;
+        updateValue(checkbox.id);
+    }
 }
 
 // ページが読み込まれたときの初期設定
