@@ -4,12 +4,12 @@ const values = {};
 function generateRows(years) {
     return years.map(year => `
         <tr>
-            <td>${year.replace('$', '-')} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
-            <td><input type="checkbox" id="${year}$1" onchange="updateValue('${year}$1')"></td>
-            <td><input type="checkbox" id="${year}$2" onchange="updateValue('${year}$2')"></td>
-            <td><input type="checkbox" id="${year}$3" onchange="updateValue('${year}$3')"></td>
-            <td><input type="checkbox" id="${year}$4" onchange="updateValue('${year}$4')"></td>
-            <td><input type="checkbox" id="${year}$5" onchange="updateValue('${year}$5')"></td>
+            <td>${year.replace('$', '-')} <input type="checkbox" id="${year.replace('$', '_')}" onchange="toggleYear('${year.replace('$', '_')}')"></td>
+            <td><input type="checkbox" id="${year}_1" onchange="updateValue('${year}_1')"></td>
+            <td><input type="checkbox" id="${year}_2" onchange="updateValue('${year}_2')"></td>
+            <td><input type="checkbox" id="${year}_3" onchange="updateValue('${year}_3')"></td>
+            <td><input type="checkbox" id="${year}_4" onchange="updateValue('${year}_4')"></td>
+            <td><input type="checkbox" id="${year}_5" onchange="updateValue('${year}_5')"></td>
         </tr>
     `).join('');
 }
@@ -23,7 +23,7 @@ function updateValue(id) {
         for (let chapter = 1; chapter <= 5; chapter++) {
             const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
             if (chapterCheckbox) {
-                const relatedCheckboxes = document.querySelectorAll(`input[id$="$${chapter}"]`);
+                const relatedCheckboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
                 const allChecked = Array.from(relatedCheckboxes).every(cb => cb.checked);
                 chapterCheckbox.checked = allChecked;
                 values[`chapter_${chapter}`] = allChecked;
@@ -31,10 +31,10 @@ function updateValue(id) {
         }
 
         // 年代のチェックボックスの状態を更新
-        const year = id.split('$')[0];
+        const year = id.split('_')[0];
         const yearCheckbox = document.getElementById(year);
         if (yearCheckbox) {
-            const yearRelatedCheckboxes = document.querySelectorAll(`input[id^="${year}$"]`);
+            const yearRelatedCheckboxes = document.querySelectorAll(`input[id^="${year}_"]`);
             const allChecked = Array.from(yearRelatedCheckboxes).every(cb => cb.checked);
             yearCheckbox.checked = allChecked;
             values[year] = allChecked;
@@ -46,17 +46,15 @@ function updateValue(id) {
 
 function toggleChapter(chapter) {
     const isChecked = document.getElementById(`chapter_${chapter}`).checked;
-    document.querySelectorAll(`input[id$="$${chapter}"]`).forEach(checkbox => {
-        if (!(checkbox.id === `H20$1$${chapter}` || checkbox.id === `H20$2$${chapter}`)) {
-            checkbox.checked = isChecked;
-            updateValue(checkbox.id);
-        }
+    document.querySelectorAll(`input[id$="_${chapter}"]`).forEach(checkbox => {
+        checkbox.checked = isChecked;
+        updateValue(checkbox.id);
     });
 }
 
 function toggleYear(year) {
     const isChecked = document.getElementById(year).checked;
-    document.querySelectorAll(`input[id^="${year}$"]`).forEach(checkbox => {
+    document.querySelectorAll(`input[id^="${year}_"]`).forEach(checkbox => {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     });
