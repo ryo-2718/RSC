@@ -14,6 +14,22 @@ function generateRows(years) {
     `).join('');
 }
 
+function updateChapterCheckbox(chapter) {
+    const checkboxes = document.querySelectorAll(`input[id$="_${chapter}"]`);
+    const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
+    const isChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+    chapterCheckbox.checked = isChecked;
+    updateValue(chapterCheckbox.id);
+}
+
+function updateYearCheckbox(year) {
+    const checkboxes = document.querySelectorAll(`input[id^="${year}_"]`);
+    const yearCheckbox = document.getElementById(year);
+    const isChecked = Array.from(checkboxes).every(checkbox => checkbox.checked);
+    yearCheckbox.checked = isChecked;
+    updateValue(yearCheckbox.id);
+}
+
 function updateValue(id) {
     const checkbox = document.getElementById(id);
     values[id] = checkbox.checked;
@@ -30,6 +46,7 @@ function toggleChapter(chapter) {
             updateValue(checkbox.id);
         }
     });
+    updateChapterCheckbox(chapter);
 }
 
 function toggleYear(year) {
@@ -39,6 +56,7 @@ function toggleYear(year) {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     }
+    updateYearCheckbox(year);
 }
 
 // ページが読み込まれたときの初期設定
