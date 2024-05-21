@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一問一答 - 登録販売者試験 過去問道場</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>登録販売者試験 過去問道場</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">ホーム</a></li>
+                <li><a href="mock_test.html">模擬テスト</a></li>
+                <li><a href="single_question.html">一問一答</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>一問一答</h2>
+        <div id="question-container">
+            <button onclick="loadQuestion()">次の問題</button>
+            <div id="question"></div>
+            <div id="result"></div>
+        </div>
+    </main>
+    <script src="question.js"></script>
+    <script src="questions.js"></script>
+</body>
+</html>
