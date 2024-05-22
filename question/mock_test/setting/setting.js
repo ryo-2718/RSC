@@ -1,7 +1,6 @@
 const values = {};
 
 function formatYear(year) {
-    // 年の表示をフォーマットする関数
     let formattedYear = year;
     if (year.startsWith('H')) {
         formattedYear = '平成' + year.substring(1).replace('_1', '年①').replace('_2', '年②');
@@ -20,12 +19,12 @@ function formatYear(year) {
 function generateRows(years) {
     return years.map(year => `
         <tr>
-            <td>${formatYear(year)} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
-            <td><input type="checkbox" id="${year}ch1" onchange="updateValue('${year}ch1')"></td>
-            <td><input type="checkbox" id="${year}ch2" onchange="updateValue('${year}ch2')"></td>
-            <td><input type="checkbox" id="${year}ch3" onchange="updateValue('${year}ch3')"></td>
-            <td><input type="checkbox" id="${year}ch4" onchange="updateValue('${year}ch4')"></td>
-            <td><input type="checkbox" id="${year}ch5" onchange="updateValue('${year}ch5')"></td>
+            <td>${formatYear(year)} <input type="checkbox" id="${year}" checked onchange="toggleYear('${year}')"></td>
+            <td><input type="checkbox" id="${year}ch1" checked onchange="updateValue('${year}ch1')"></td>
+            <td><input type="checkbox" id="${year}ch2" checked onchange="updateValue('${year}ch2')"></td>
+            <td><input type="checkbox" id="${year}ch3" checked onchange="updateValue('${year}ch3')"></td>
+            <td><input type="checkbox" id="${year}ch4" checked onchange="updateValue('${year}ch4')"></td>
+            <td><input type="checkbox" id="${year}ch5" checked onchange="updateValue('${year}ch5')"></td>
         </tr>
     `).join('');
 }
@@ -90,6 +89,7 @@ window.onload = () => {
 
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
+        checkbox.checked = true; // すべてのチェックボックスをチェック状態にする
         values[checkbox.id] = checkbox.checked;
         checkbox.addEventListener('change', function() {
             updateValue(this.id);
