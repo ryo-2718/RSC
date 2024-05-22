@@ -91,8 +91,6 @@ function toggleMockExamMode() {
     });
 }
 
-
-
 window.onload = () => {
     const years = ['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
     const tableBody = document.getElementById('table-body');
@@ -106,4 +104,10 @@ window.onload = () => {
             updateValue(this.id);
         });
     });
+
+    // 模擬試験モードのトグルスイッチをオフに設定
+    const mockExamToggle = document.getElementById('mock-exam-toggle');
+    mockExamToggle.checked = false;
+    toggleMockExamMode(); // 初期化時にトグルスイッチの状態を反映
+    mockExamToggle.addEventListener('change', toggleMockExamMode); // トグルスイッチの変更を監視
 };
