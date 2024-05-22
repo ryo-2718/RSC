@@ -1,3 +1,5 @@
+const question = {...H20_1cp1};
+
 function loadQuestion() {
   let container = document.getElementById('question');
   let resultContainer = document.getElementById('result');
