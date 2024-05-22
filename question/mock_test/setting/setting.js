@@ -87,10 +87,9 @@ function toggleMockExamMode() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         checkbox.checked = isMockExamMode;
-        checkbox.disabled = isMockExamMode; // トグルスイッチがオンの場合、チェックボックスを無効にする
-        updateValue(checkbox.id);
     });
 }
+
 
 window.onload = () => {
     const years = ['H20_1', 'H20_2', 'H21', 'H22', 'H23', 'H24', 'H25', 'H26', 'H27', 'H28', 'H29', 'H30', 'R1', 'R2', 'R3', 'R4'];
