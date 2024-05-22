@@ -13,45 +13,6 @@ function generateRows(years) {
     `).join('');
 }
 
-function updateAllCheckboxes() {
-    const yearCheckboxes = document.querySelectorAll('input[type="checkbox"]:not([id^="chapter_"])');
-    const chapterCheckboxes = document.querySelectorAll('input[id^="chapter_"]');
-
-    // 各年代ごとにループ
-    yearCheckboxes.forEach(yearCheckbox => {
-        const year = yearCheckbox.id;
-        let yearChecked = true;
-        // 各章ごとにループ
-        chapterCheckboxes.forEach(chapterCheckbox => {
-            const chapter = chapterCheckbox.id.split('_')[1];
-            // 各年代の章に対するチェックボックスが一つでもチェックされていなければ、その年代のチェックを外す
-            if (!document.getElementById(`${year}ch${chapter}`).checked) {
-                yearChecked = false;
-            }
-        });
-        // 年代のチェックボックスを更新
-        document.getElementById(year).checked = yearChecked;
-        updateValue(year);
-    });
-
-    // 各章ごとにループ
-    chapterCheckboxes.forEach(chapterCheckbox => {
-        const chapter = chapterCheckbox.id.split('_')[1];
-        let chapterChecked = true;
-        // 各年代ごとにループ
-        yearCheckboxes.forEach(yearCheckbox => {
-            const year = yearCheckbox.id;
-            // 各章の年代に対するチェックボックスが一つでもチェックされていなければ、その章のチェックを外す
-            if (!document.getElementById(`${year}ch${chapter}`).checked) {
-                chapterChecked = false;
-            }
-        });
-        // 章のチェックボックスを更新
-        document.getElementById(`chapter_${chapter}`).checked = chapterChecked;
-        updateValue(`chapter_${chapter}`);
-    });
-}
-
 function updateValue(id) {
     const checkbox = document.getElementById(id);
     values[id] = checkbox.checked;
@@ -64,8 +25,6 @@ function toggleChapter(chapter) {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     });
-    // 全体のチェックボックスを更新
-    updateAllCheckboxes();
 }
 
 function toggleYear(year) {
@@ -75,8 +34,6 @@ function toggleYear(year) {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     }
-    // 全体のチェックボックスを更新
-    updateAllCheckboxes();
 }
 
 window.onload = () => {
@@ -87,8 +44,41 @@ window.onload = () => {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         values[checkbox.id] = checkbox.checked;
+        checkbox.addEventListener('change', function() {
+            updateRelatedCheckboxes(this.id);
+        });
     });
 
-    // 全体のチェックボックスを更新
-    updateAllCheckboxes();
+    function updateRelatedCheckboxes(id) {
+        const year = id.split('ch')[0]; // 年代を取得
+        const chapter = id.split('ch')[1]; // 章を取得
+        const yearCheckboxes = document.querySelectorAll(`input[id^="${year}ch"]`);
+        const chapterCheckboxes = document.querySelectorAll(`input[id$="ch${chapter}"]`);
+        
+        // 年代に関するチェックボックスの状態をチェック
+        let yearChecked = true;
+        yearCheckboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                yearChecked = false;
+            }
+        });
+
+        // 章に関するチェックボックスの状態をチェック
+        let chapterChecked = true;
+        chapterCheckboxes.forEach(checkbox => {
+            if (!checkbox.checked) {
+                chapterChecked = false;
+            }
+        });
+
+        // 年代に関するチェックボックスの状態を更新
+        const yearCheckbox = document.getElementById(year);
+        yearCheckbox.checked = yearChecked;
+        values[yearCheckbox.id] = yearChecked;
+
+        // 章に関するチェックボックスの状態を更新
+        const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
+        chapterCheckbox.checked = chapterChecked;
+        values[chapterCheckbox.id] = chapterChecked;
+    }
 };
