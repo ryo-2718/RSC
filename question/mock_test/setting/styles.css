@@ -36,6 +36,10 @@ main {
     padding: 20px;
 }
 
+.toggle-container {
+    margin-bottom: 20px; /* トグルスイッチの下に余白を追加 */
+}
+
 table {
     width: 100%;
     border-collapse: collapse;
