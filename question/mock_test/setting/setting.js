@@ -87,8 +87,10 @@ function toggleMockExamMode() {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
         checkbox.checked = isMockExamMode;
+        checkbox.disabled = isMockExamMode; // チェックボックスの無効化はトグルスイッチがオンの場合のみ
     });
 }
+
 
 
 window.onload = () => {
