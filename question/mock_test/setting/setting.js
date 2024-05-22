@@ -88,4 +88,7 @@ window.onload = () => {
     checkboxes.forEach(checkbox => {
         values[checkbox.id] = checkbox.checked;
     });
+
+    // 全体のチェックボックスを更新
+    updateAllCheckboxes();
 };
