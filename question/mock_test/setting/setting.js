@@ -13,6 +13,45 @@ function generateRows(years) {
     `).join('');
 }
 
+function updateAllCheckboxes() {
+    const yearCheckboxes = document.querySelectorAll('input[type="checkbox"]:not([id^="chapter_"])');
+    const chapterCheckboxes = document.querySelectorAll('input[id^="chapter_"]');
+
+    // 各年代ごとにループ
+    yearCheckboxes.forEach(yearCheckbox => {
+        const year = yearCheckbox.id;
+        let yearChecked = true;
+        // 各章ごとにループ
+        chapterCheckboxes.forEach(chapterCheckbox => {
+            const chapter = chapterCheckbox.id.split('_')[1];
+            // 各年代の章に対するチェックボックスが一つでもチェックされていなければ、その年代のチェックを外す
+            if (!document.getElementById(`${year}ch${chapter}`).checked) {
+                yearChecked = false;
+            }
+        });
+        // 年代のチェックボックスを更新
+        document.getElementById(year).checked = yearChecked;
+        updateValue(year);
+    });
+
+    // 各章ごとにループ
+    chapterCheckboxes.forEach(chapterCheckbox => {
+        const chapter = chapterCheckbox.id.split('_')[1];
+        let chapterChecked = true;
+        // 各年代ごとにループ
+        yearCheckboxes.forEach(yearCheckbox => {
+            const year = yearCheckbox.id;
+            // 各章の年代に対するチェックボックスが一つでもチェックされていなければ、その章のチェックを外す
+            if (!document.getElementById(`${year}ch${chapter}`).checked) {
+                chapterChecked = false;
+            }
+        });
+        // 章のチェックボックスを更新
+        document.getElementById(`chapter_${chapter}`).checked = chapterChecked;
+        updateValue(`chapter_${chapter}`);
+    });
+}
+
 function updateValue(id) {
     const checkbox = document.getElementById(id);
     values[id] = checkbox.checked;
@@ -25,6 +64,8 @@ function toggleChapter(chapter) {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     });
+    // 全体のチェックボックスを更新
+    updateAllCheckboxes();
 }
 
 function toggleYear(year) {
@@ -34,6 +75,8 @@ function toggleYear(year) {
         checkbox.checked = isChecked;
         updateValue(checkbox.id);
     }
+    // 全体のチェックボックスを更新
+    updateAllCheckboxes();
 }
 
 window.onload = () => {
