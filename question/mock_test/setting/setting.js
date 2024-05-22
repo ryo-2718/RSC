@@ -80,5 +80,21 @@ window.onload = () => {
         const chapterCheckbox = document.getElementById(`chapter_${chapter}`);
         chapterCheckbox.checked = chapterChecked;
         values[chapterCheckbox.id] = chapterChecked;
+
+        // 年代に関するチェックボックスの状態が変更された場合、その年代に属する章の状態も更新する
+        if (id.startsWith(year)) {
+            chapterCheckboxes.forEach(checkbox => {
+                checkbox.checked = yearChecked;
+                values[checkbox.id] = yearChecked;
+            });
+        }
+
+        // 章に関するチェックボックスの状態が変更された場合、その章に属する年代の状態も更新する
+        if (id.endsWith(chapter)) {
+            yearCheckboxes.forEach(checkbox => {
+                checkbox.checked = chapterChecked;
+                values[checkbox.id] = chapterChecked;
+            });
+        }
     }
 };
