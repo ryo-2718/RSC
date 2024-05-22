@@ -1,9 +1,26 @@
 const values = {};
 
+function formatYear(year) {
+    // 年の表示をフォーマットする関数
+    let formattedYear = year;
+    if (year.startsWith('H')) {
+        formattedYear = '平成' + year.substring(1).replace('_1', '年①').replace('_2', '年②');
+        if (!formattedYear.includes('年')) {
+            formattedYear = formattedYear + '年';
+        }
+    } else if (year.startsWith('R')) {
+        formattedYear = '令和' + year.substring(1).replace('_1', '年①').replace('_2', '年②');
+        if (!formattedYear.includes('年')) {
+            formattedYear = formattedYear + '年';
+        }
+    }
+    return formattedYear;
+}
+
 function generateRows(years) {
     return years.map(year => `
         <tr>
-            <td>${year} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
+            <td>${formatYear(year)} <input type="checkbox" id="${year}" onchange="toggleYear('${year}')"></td>
             <td><input type="checkbox" id="${year}ch1" onchange="updateValue('${year}ch1')"></td>
             <td><input type="checkbox" id="${year}ch2" onchange="updateValue('${year}ch2')"></td>
             <td><input type="checkbox" id="${year}ch3" onchange="updateValue('${year}ch3')"></td>
