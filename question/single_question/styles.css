@@ -60,6 +60,10 @@ table th {
   text-align: left;
 }
 
+.option-text {
+  margin: 10px 0;
+}
+
 button {
   display: inline-block;
   margin: 5px;
@@ -91,8 +95,4 @@ button:hover {
 
 #next-question-button:hover {
   background-color: #555;
-}
-
-.option-text {
-  margin: 10px 0;
 }
