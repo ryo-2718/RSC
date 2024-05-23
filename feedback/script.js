@@ -1,35 +1,55 @@
 // script.js
-document.addEventListener('DOMContentLoaded', function() {
-    const feedbackForm = document.getElementById('feedbackForm');
-    const feedbackType = document.getElementById('feedbackType');
+document.addEventListener('DOMContentLoaded', () => {
+    const typeSelect = document.getElementById('type');
     const emailLabel = document.getElementById('emailLabel');
-    const email = document.getElementById('email');
+    const emailInput = document.getElementById('email');
     
-    // 問い合わせの場合、メールアドレスを必須にする
-    feedbackType.addEventListener('change', function() {
-        if (feedbackType.value === 'inquiry') {
-            email.required = true;
+    typeSelect.addEventListener('change', () => {
+        if (typeSelect.value === 'inquiry') {
             emailLabel.style.display = 'block';
-            email.style.display = 'block';
+            emailInput.style.display = 'block';
+            emailInput.required = true;
         } else {
-            email.required = false;
             emailLabel.style.display = 'none';
-            email.style.display = 'none';
+            emailInput.style.display = 'none';
+            emailInput.required = false;
         }
     });
-    
-    // 初期状態でメールアドレスフィールドを非表示にする
-    emailLabel.style.display = 'none';
-    email.style.display = 'none';
-    
-    // フォームの送信時にバリデーションを実行
-    feedbackForm.addEventListener('submit', function(event) {
-        if (feedbackType.value === '') {
-            alert('フィードバックの種類を選択してください。');
-            event.preventDefault();
-        } else if (feedbackType.value === 'inquiry' && email.value === '') {
-            alert('問い合わせの場合、メールアドレスは必須です。');
-            event.preventDefault();
-        }
+
+    const form = document.getElementById('feedbackForm');
+    form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        sendFeedback();
     });
+
+    function sendFeedback() {
+        const formData = new FormData(form);
+        const data = {
+            type: formData.get('type'),
+            name: formData.get('name'),
+            message: formData.get('message'),
+            email: formData.get('email') || '',
+        };
+
+        // GoogleフォームのURL
+        const googleFormURL = 'https://docs.google.com/forms/d/e/FORM_ID_HERE/formResponse';
+        
+        const queryString = new URLSearchParams({
+            'entry.XXXXX': data.type, // GoogleフォームのエントリーID
+            'entry.YYYYY': data.name, // GoogleフォームのエントリーID
+            'entry.ZZZZZ': data.message, // GoogleフォームのエントリーID
+            'entry.AAAAA': data.email // GoogleフォームのエントリーID
+        }).toString();
+
+        fetch(`${googleFormURL}?${queryString}`, {
+            method: 'POST',
+            mode: 'no-cors'
+        }).then(() => {
+            alert('フィードバックを送信しました。');
+            form.reset();
+        }).catch((error) => {
+            alert('フィードバックの送信に失敗しました。');
+            console.error('Error:', error);
+        });
+    }
 });
