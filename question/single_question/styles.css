@@ -51,6 +51,8 @@ main {
   word-wrap: break-word; /* 長い単語を折り返す */
   overflow-wrap: break-word; /* 長い単語を折り返す */
   margin: 0 auto; /* 中央揃え */
+  background-color: #ffffcc; /* 薄い黄色 */
+  padding: 10px; /* テキストとコンテナの間隔を設定 */
 }
 
 table {
