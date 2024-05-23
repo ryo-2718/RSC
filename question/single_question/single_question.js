@@ -3,6 +3,7 @@ const questions = [...H20_1ch1]; // 質問データを取得
 function loadQuestion() {
     let container = document.getElementById('question'); // 質問を表示するコンテナ
     let resultContainer = document.getElementById('result'); // 結果を表示するコンテナ
+    container.innerHTML = ''; // 質問コンテナをクリア
     resultContainer.innerHTML = ''; // 結果コンテナをクリア
     let q = questions[Math.floor(Math.random() * questions.length)]; // ランダムな質問を選択
 
