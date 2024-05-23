@@ -1,3 +1,5 @@
+const questions = [...H20_1ch1]; // 質問データを取得
+
 function loadQuestion() {
     let questionContainer = document.getElementById('question'); // 質問を表示するコンテナ
     let optionsContainer = document.getElementById('options'); // 選択肢を表示するコンテナ
