@@ -30,7 +30,15 @@ function loadQuestion() {
 
     // 選択肢を表示する部分
     for (let i = 0; i < q.options.length; i++) {
-        container.innerHTML += `<button onclick="checkAnswer(${q.correct}, ${i})">${i + 1}: ${q.options[i]}</button>`;
+        let optionText = document.createElement('div');
+        optionText.className = 'option-text';
+        optionText.innerText = `${i + 1}: ${q.options[i]}`;
+        container.appendChild(optionText);
+
+        let button = document.createElement('button');
+        button.innerText = i + 1;
+        button.onclick = () => checkAnswer(q.correct, i);
+        container.appendChild(button);
     }
 }
 
