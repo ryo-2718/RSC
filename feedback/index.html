@@ -3,29 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>フィードバックページ</title>
+    <title>フィードバックフォーム</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>フィードバック</h1>
-        <form id="feedbackForm" method="post" action="send_feedback.php">
-            <label for="feedbackType">フィードバックの種類:</label>
-            <select id="feedbackType" name="feedbackType" required>
+        <h1>フィードバックフォーム</h1>
+        <form id="feedbackForm">
+            <label for="type">種類:</label>
+            <select id="type" name="type" required>
                 <option value="">選択してください</option>
                 <option value="feedback">フィードバック</option>
                 <option value="inquiry">問い合わせ</option>
             </select>
-            
+
             <label for="name">名前 (任意):</label>
             <input type="text" id="name" name="name">
-            
+
             <label for="message">内容:</label>
             <textarea id="message" name="message" required></textarea>
-            
-            <label for="email" id="emailLabel">メールアドレス:</label>
-            <input type="email" id="email" name="email">
-            
+
+            <label for="email" id="emailLabel" style="display: none;">メールアドレス (問い合わせの場合必須):</label>
+            <input type="email" id="email" name="email" style="display: none;">
+
             <button type="submit">送信</button>
         </form>
     </div>
