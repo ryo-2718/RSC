@@ -1,9 +1,8 @@
 body {
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f4;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding-top: 60px; /* ヘッダーの高さ分のパディングを追加 */
 }
 
 header {
@@ -12,39 +11,49 @@ header {
     padding: 10px 0;
     text-align: center;
     position: fixed; /* ヘッダーを固定位置に */
+    top: 0;
+    width: 100%;
     z-index: 1000; /* ヘッダーが他の要素の上に表示されるように */
 }
 
 header h1 {
-  margin: 0;
+    margin: 0;
 }
 
 nav ul {
-  list-style: none;
-  padding: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 nav ul li {
-  display: inline;
-  margin: 0 10px;
+    display: inline;
+    margin: 0 10px;
 }
 
 nav ul li a {
-  color: #fff;
-  text-decoration: none;
+    color: #fff;
+    text-decoration: none;
 }
 
-.container {
+main {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: calc(100vh - 60px); /* ヘッダーの高さを引いた分の高さを指定 */
-    padding-top: 20px; /* コンテナの上に少しパディングを追加 */
+    padding: 20px; /* コンテナの上に少しパディングを追加 */
+}
+
+.container {
+    width: 100%;
+    max-width: 640px;
+    height: 100%;
+    padding: 20px; /* フォームとコンテナの間にスペースを追加 */
+    box-sizing: border-box; /* パディングを含むサイズ計算 */
 }
 
 iframe {
     border: none;
     width: 100%;
-    max-width: 640px;
     height: 800px;
 }
