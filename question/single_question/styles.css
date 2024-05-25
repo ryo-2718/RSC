@@ -106,3 +106,9 @@ button:hover {
 #next-question-button:hover {
   background-color: #555;
 }
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 18px; /* スマホでのフォントサイズ */
+    }
+}
