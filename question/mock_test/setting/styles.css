@@ -59,3 +59,9 @@ thead {
 input[type="checkbox"] {
   transform: scale(1.8); /* チェックボックスの大きさを調整 */
 }
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 18px; /* スマホでのフォントサイズ */
+    }
+}
