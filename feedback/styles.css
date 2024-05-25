@@ -24,7 +24,7 @@ header h1 {
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 9px 0;
 }
 
 nav ul li {
@@ -39,7 +39,7 @@ nav ul li a {
 
 main {
     padding: 20px;
-    padding-top: 60px;
+    padding-top: 60px; /* ヘッダーの高さに合わせて調整 */
 }
 
 .container {
