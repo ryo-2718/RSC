@@ -60,3 +60,14 @@ iframe {
 h3 {
     color: red; 
 }
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+    main {
+        padding-top: 98px; /* スマホでの表示に合わせて調整 */
+    }
+
+    nav ul {
+        margin: 9px 0;
+    }
+}
