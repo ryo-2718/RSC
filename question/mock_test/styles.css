@@ -90,3 +90,9 @@ main {
   padding: 8px;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+    header h1 {
+        font-size: 18px; /* スマホでのフォントサイズ */
+    }
+}
