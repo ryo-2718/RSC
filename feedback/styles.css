@@ -11,10 +11,10 @@ header {
     color: #fff;
     padding: 10px 0;
     text-align: center;
-    position: fixed; /* ヘッダーを固定位置に */
+    position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1000; /* ヘッダーが他の要素の上に表示されるように */
+    z-index: 1000;
 }
 
 header h1 {
@@ -39,7 +39,7 @@ nav ul li a {
 
 main {
     padding: 20px;
-    padding-top: 60px; /* ヘッダーの高さ分のパディングを追加 */
+    padding-top: 60px;
 }
 
 .container {
