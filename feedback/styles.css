@@ -34,7 +34,8 @@ nav ul li a {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: calc(100vh - 50px); /* ヘッダーの高さ分を引いた高さ */
+    padding-top: 10px; /* ヘッダーとコンテンツの間のスペース */
 }
 
 iframe {
@@ -42,4 +43,11 @@ iframe {
     width: 100%;
     max-width: 640px;
     height: 800px;
+}
+
+/* 高さが775pxを超える場合のスタイル */
+@media (min-height: 775px) {
+    .container {
+        padding-top: 60px; /* ヘッダーの高さに合わせて調整 */
+    }
 }
