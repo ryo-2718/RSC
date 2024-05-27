@@ -22,11 +22,14 @@
         <h2>設定</h2>
         
         <div class="toggle-container">
-            <label for="toggle-switch">模擬試験モード: </label>
-            <input type="radio" id="toggle-on" name="toggle" value="on" checked onchange="toggleFunction(true)">
-            <label for="toggle-on">オン</label>
-            <input type="radio" id="toggle-off" name="toggle" value="off" onchange="toggleFunction(false)">
-            <label for="toggle-off">オフ</label>
+            <label class="toggle-label">模擬試験モード: 
+                <input type="radio" id="toggle-on" name="toggle" value="on" checked onchange="toggleFunction(true)">
+                <span class="toggle-switch">オン</span>
+            </label>
+            <label class="toggle-label">
+                <input type="radio" id="toggle-off" name="toggle" value="off" onchange="toggleFunction(false)">
+                <span class="toggle-switch">オフ</span>
+            </label>
         </div>
         
         <table>
