@@ -20,6 +20,15 @@
     </header>
     <main>
         <h2>設定</h2>
+        
+        <div class="toggle-container">
+            <label for="toggle-switch">機能スイッチ: </label>
+            <input type="radio" id="toggle-on" name="toggle" value="on" checked onchange="toggleFunction(true)">
+            <label for="toggle-on">オン</label>
+            <input type="radio" id="toggle-off" name="toggle" value="off" onchange="toggleFunction(false)">
+            <label for="toggle-off">オフ</label>
+        </div>
+        
         <table>
             <thead>
                 <tr>
