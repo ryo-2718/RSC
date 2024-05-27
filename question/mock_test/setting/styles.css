@@ -43,22 +43,33 @@ main {
 
 .toggle-label {
   display: inline-block;
-  padding: 10px 20px;
+  position: relative;
+  padding: 10px 30px;
   background-color: black;
   color: white;
-  margin-right: 10px;
   cursor: pointer;
   user-select: none;
+  border-radius: 20px; /* 角を丸くする */
+}
+
+.toggle-label::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%; /* 円形にする */
+  transition: transform 0.2s;
 }
 
 input[type="radio"] {
   display: none;
 }
 
-input[type="radio"]:checked + .toggle-label {
-  background-color: white;
-  color: black;
-  border: 1px solid black;
+input[type="radio"]:checked + .toggle-label::before {
+  transform: translateX(100%);
 }
 
 table {
