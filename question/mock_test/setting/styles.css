@@ -38,43 +38,64 @@ main {
 }
 
 .toggle-container {
-  margin-bottom: 20px;
-  display: inline-block;
+  margin-bottom: 20px; /* トグルスイッチの下に余白を追加 */
+  display: flex;
+  align-items: center;
+}
+
+.toggle-container label {
+  margin-right: 10px;
 }
 
 .toggle-label {
-  display: inline-block;
   position: relative;
+  display: inline-block;
   width: 60px;
-  height: 34px;
+  height: 30px;
   background-color: #ccc;
-  border-radius: 34px;
+  border-radius: 15px;
   cursor: pointer;
+  margin-right: 10px;
   transition: background-color 0.3s;
 }
 
-.toggle-label::after {
-  content: "";
-  position: absolute;
-  width: 26px;
-  height: 26px;
-  left: 4px;
-  top: 4px;
-  background-color: white;
-  border-radius: 50%;
-  transition: transform 0.3s;
-}
-
-input[type="radio"] {
+.toggle-label input {
   display: none;
 }
 
-input[type="radio"]:checked + .toggle-label {
-  background-color: #66bb6a;
+.toggle-button {
+  position: absolute;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  width: 50%;
+  height: 80%;
+  background-color: white;
+  border-radius: 5px;
+  transition: left 0.3s;
 }
 
-input[type="radio"]:checked + .toggle-label::after {
-  transform: translateX(26px);
+.toggle-label input:checked + .toggle-button {
+  left: 55%;
+  background-color: #4caf50;
+}
+
+.toggle-label input:checked + .toggle-button:before {
+  content: 'オン';
+  color: white;
+  position: absolute;
+  left: 15%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.toggle-label input:not(:checked) + .toggle-button:before {
+  content: 'オフ';
+  color: white;
+  position: absolute;
+  left: 85%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 table {
@@ -94,11 +115,11 @@ thead {
 }
 
 input[type="checkbox"] {
-  transform: scale(1.8);
+  transform: scale(1.8); /* チェックボックスの大きさを調整 */
 }
 
 @media (max-width: 600px) {
-  header h1 {
-    font-size: 18px;
-  }
+    header h1 {
+        font-size: 18px; /* スマホでのフォントサイズ */
+    }
 }
