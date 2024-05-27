@@ -82,10 +82,17 @@ function updateRelatedCheckboxes(id) {
     }
 }
 
+// 模擬試験モードのトグルスイッチの状態を切り替える関数
 function toggleFunction(isOn) {
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     checkboxes.forEach(checkbox => {
-        checkbox.disabled = !isOn;
+        if (isOn) {
+            checkbox.checked = true; // すべてのチェックボックスをチェック
+            checkbox.disabled = true; // チェックボックスをロック
+        } else {
+            checkbox.disabled = false; // チェックボックスのロックを解除
+        }
+        updateValue(checkbox.id);
     });
 }
 
