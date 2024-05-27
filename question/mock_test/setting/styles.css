@@ -38,50 +38,42 @@ main {
 }
 
 .toggle-container {
-  margin-bottom: 20px; /* トグルスイッチの下に余白を追加 */
+  margin-bottom: 20px;
+  display: inline-block;
 }
 
 .toggle-label {
   display: inline-block;
   position: relative;
-  padding-left: 40px;
-  margin-right: 20px;
-  cursor: pointer;
-  font-size: 18px;
-}
-
-.toggle-label input {
-  display: none;
-}
-
-.toggle-switch {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 24px;
-  width: 50px;
+  width: 60px;
+  height: 34px;
   background-color: #ccc;
-  border-radius: 12px;
+  border-radius: 34px;
+  cursor: pointer;
   transition: background-color 0.3s;
 }
 
-.toggle-switch::after {
+.toggle-label::after {
   content: "";
   position: absolute;
-  height: 20px;
-  width: 20px;
-  left: 2px;
-  bottom: 2px;
+  width: 26px;
+  height: 26px;
+  left: 4px;
+  top: 4px;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 50%;
   transition: transform 0.3s;
 }
 
-input:checked + .toggle-switch {
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + .toggle-label {
   background-color: #66bb6a;
 }
 
-input:checked + .toggle-switch::after {
+input[type="radio"]:checked + .toggle-label::after {
   transform: translateX(26px);
 }
 
@@ -102,11 +94,11 @@ thead {
 }
 
 input[type="checkbox"] {
-  transform: scale(1.8); /* チェックボックスの大きさを調整 */
+  transform: scale(1.8);
 }
 
 @media (max-width: 600px) {
-    header h1 {
-        font-size: 18px; /* スマホでのフォントサイズ */
-    }
+  header h1 {
+    font-size: 18px;
+  }
 }
