@@ -55,10 +55,10 @@ main {
 .toggle-label::before {
   content: '';
   position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 26px;
-  height: 26px;
+  top: 4px;
+  left: 4px;
+  width: 24px;
+  height: 24px;
   background-color: white;
   border-radius: 50%; /* 円形にする */
   transition: transform 0.2s;
@@ -69,7 +69,7 @@ input[type="radio"] {
 }
 
 input[type="radio"]:checked + .toggle-label::before {
-  transform: translateX(100%);
+  transform: translateX(50%);
 }
 
 table {
