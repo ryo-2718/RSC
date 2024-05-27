@@ -41,6 +41,26 @@ main {
   margin-bottom: 20px; /* トグルスイッチの下に余白を追加 */
 }
 
+.toggle-label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  margin-right: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+input[type="radio"]:checked + .toggle-label {
+  background-color: white;
+  color: black;
+  border: 1px solid black;
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
