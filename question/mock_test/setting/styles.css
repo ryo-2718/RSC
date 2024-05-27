@@ -41,6 +41,67 @@ main {
   margin-bottom: 20px; /* トグルスイッチの下に余白を追加 */
 }
 
+/* ラジオボタンのラベル */
+.toggle-container label {
+  display: inline-block;
+  position: relative;
+  padding-left: 30px;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
+/* ラジオボタン */
+.toggle-container input[type="radio"] {
+  display: none;
+}
+
+/* ラジオボタンの外側の円 */
+.toggle-container label:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  transition: border-color 0.3s ease;
+}
+
+/* ラジオボタンの中のドット */
+.toggle-container label:after {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #ccc;
+  transition: background-color 0.3s ease;
+}
+
+/* ラジオボタンがチェックされたときの外側の円 */
+.toggle-container input[type="radio"]:checked + label:before {
+  border-color: #2196F3; /* 選択された色に変更 */
+}
+
+/* ラジオボタンがチェックされたときの中のドット */
+.toggle-container input[type="radio"]:checked + label:after {
+  background-color: #2196F3; /* 選択された色に変更 */
+}
+
+/* ラベルがクリックされたときの外側の円の動き */
+.toggle-container label:before {
+  transition: border-color 0.3s ease;
+}
+
+/* ラベルがクリックされたときの中のドットの動き */
+.toggle-container label:after {
+  transition: background-color 0.3s ease;
+}
+
+
 table {
   width: 100%;
   border-collapse: collapse;
