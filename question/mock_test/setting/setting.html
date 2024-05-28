@@ -22,15 +22,11 @@
         <h2>設定</h2>
         
         <div class="toggle-container">
-            <label for="toggle-switch">模擬試験モード: </label>
-            <label class="toggle-label">
-                <input type="radio" id="toggle-on" name="toggle" value="on" onchange="toggleFunction(true)">
-                <span class="toggle-button">オン</span>
-            </label>
-            <label class="toggle-label">
-                <input type="radio" id="toggle-off" name="toggle" value="off" checked onchange="toggleFunction(false)">
-                <span class="toggle-button">オフ</span>
-            </label>
+            <label for="toggle-on" class="toggle-label">模擬試験モード: </label>
+            <input type="radio" id="toggle-on" name="toggle" value="on" onchange="toggleFunction(true)">
+            <label for="toggle-on" class="toggle-button">オン</label>
+            <input type="radio" id="toggle-off" name="toggle" value="off" checked onchange="toggleFunction(false)">
+            <label for="toggle-off" class="toggle-button">オフ</label>
         </div>
         
         <table>
@@ -48,7 +44,14 @@
                 <!-- JavaScript でテーブル行が生成されます -->
             </tbody>
         </table>
+        
+        <button id="next-button">次へ</button>
     </main>
     <script src="setting.js"></script>
+    <script>
+        document.getElementById("next-button").addEventListener("click", function() {
+            window.location.href = "https://ryo-2718.github.io/RSC/question/mock_test/mock_test.html";
+        });
+    </script>
 </body>
 </html>
