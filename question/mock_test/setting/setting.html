@@ -49,8 +49,13 @@
     </main>
     <script src="setting.js"></script>
     <script>
+        function getMockTestMode() {
+            return document.querySelector('input[name="toggle"]:checked').value === 'on';
+        }
+
         document.getElementById("next-button").addEventListener("click", function() {
-            window.location.href = "https://ryo-2718.github.io/RSC/question/mock_test/mock_test.html";
+            const mockTestMode = getMockTestMode();
+            window.location.href = `https://ryo-2718.github.io/RSC/question/mock_test/mock_test.html?mockTestMode=${mockTestMode}`;
         });
     </script>
 </body>
