@@ -28,6 +28,9 @@ function startTest() {
 
   if (mockTestMode) {
     questions = selectRandomQuestions();
+  } else {
+    const selectedIds = JSON.parse(localStorage.getItem('selectedIds')) || [];
+    questions = selectedIds.flatMap(id => getQuestionsById(id));
   }
 
   showQuestion();
@@ -67,8 +70,12 @@ function getRandomQuestions(arr, num) {
   return shuffled.slice(0, num);
 }
 
+function getQuestionsById(id) {
+  return allQuestions.filter(question => question.id.startsWith(id));
+}
+
 function showQuestion() {
-  if (currentQuestionIndex >= totalQuestions) {
+  if (currentQuestionIndex >= questions.length) {
     endTest();
     return;
   }
