@@ -80,7 +80,13 @@ function showQuestion() {
     return;
   }
 
-  let q = questions[currentQuestionIndex];
+  let remainingQuestions = questions.filter((_, index) => !userAnswers[index].selected); // 出題していない問題を抽出
+  if (remainingQuestions.length === 0) {
+    endTest();
+    return;
+  }
+
+  let q = remainingQuestions[Math.floor(Math.random() * remainingQuestions.length)];
   let container = document.getElementById('question-container');
   container.innerHTML = `<h3>${q.question}</h3>`;
   let optionsHTML = '<div class="options-container">';
@@ -97,9 +103,10 @@ function showQuestion() {
   buttonHTML += '</div>';
   container.innerHTML += buttonHTML;
 
-  userAnswers.push({ question: q, selected: null });
+  userAnswers[currentQuestionIndex].question = q; // 選択された問題を記録
   currentQuestionIndex++;
 }
+
 
 function saveAnswer(questionIndex, selected, correct, explanation) {
   userAnswers[questionIndex].selected = selected;
