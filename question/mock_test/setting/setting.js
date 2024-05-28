@@ -110,3 +110,17 @@ window.onload = () => {
         });
     });
 };
+
+function savePreferences() {
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+  let selectedIds = [];
+
+  checkboxes.forEach(checkbox => {
+    if (checkbox.checked) {
+      selectedIds.push(checkbox.id);
+    }
+  });
+
+  localStorage.setItem('selectedIds', JSON.stringify(selectedIds));
+}
+
