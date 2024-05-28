@@ -1,12 +1,11 @@
 let userAnswers = [];
 let currentQuestionIndex = 0;
 let score = 0;
+let questions = [];
 const totalQuestions = 120;
 let timer;
 let timerElement = document.getElementById('timer');
 let timerDisplay = document.getElementById('timer-display');
-
-const questions = []; // この行を修正してください。質問のデータが格納されます。
 
 function startTest() {
   let questionContainer = document.getElementById('question-container');
@@ -28,7 +27,7 @@ function startTest() {
   const mockTestMode = urlParams.get('mockTestMode') === 'true';
 
   if (mockTestMode) {
-    selectRandomQuestions();
+    questions = selectRandomQuestions();
   }
 
   showQuestion();
@@ -45,7 +44,7 @@ function selectRandomQuestions() {
   const ch4 = [];
   const ch5 = [];
 
-  questions.forEach(question => {
+  allQuestions.forEach(question => {
     if (question.id.endsWith('ch1')) ch1.push(question);
     if (question.id.endsWith('ch2')) ch2.push(question);
     if (question.id.endsWith('ch3')) ch3.push(question);
