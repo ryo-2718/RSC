@@ -96,7 +96,7 @@ input[type="checkbox"] {
 #next-button {
   position: fixed;
   bottom: 20px;
-  left: 20px;
+  right: 20px; /* 右下に配置 */
   padding: 10px 20px;
   background-color: #007bff;
   color: #fff;
