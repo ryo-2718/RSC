@@ -93,6 +93,22 @@ input[type="checkbox"] {
   transform: scale(1.8); /* チェックボックスの大きさを調整 */
 }
 
+#next-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#next-button:hover {
+  background-color: #0056b3;
+}
+
 @media (max-width: 600px) {
     header h1 {
         font-size: 18px; /* スマホでのフォントサイズ */
