@@ -44,14 +44,14 @@
             <button id="toggle-result" onclick="toggleResult()">結果を表示</button>
         </div>
     </main>
-    <script>
+<script>
     const F_chapters = 5;
     const F_questions = ["H20-1", "H20-2", "H21", "H22", "H23", "H24", "H25", "H26", "H27", "H28", "H29", "H30", "R1", "R2", "R3", "R4"];
 
-    for (let chapter = 1; chapter <= chapters; chapter++) {
-        questions.forEach(question => {
+    for (let F_chapter = 1; F_chapter <= F_chapters; F_chapter++) {
+        F_questions.forEach(F_question => {
             const script = document.createElement('script');
-            script.src = `https://ryo-2718.github.io/RSC/question/questions/chapter_${chapter}/${question}.js`;
+            script.src = `https://ryo-2718.github.io/RSC/question/questions/chapter_${F_chapter}/${F_question}.js`;
             document.head.appendChild(script);
         });
     }
