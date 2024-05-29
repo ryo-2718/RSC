@@ -46,30 +46,42 @@ main {
   text-align: center;
 }
 
+#question-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #question {
-  width: 90%; /* 幅を指定 */
-  max-width: 600px; /* 最大幅を指定 */
-  word-wrap: break-word; /* 長い単語を折り返す */
-  overflow-wrap: break-word; /* 長い単語を折り返す */
-  margin: 0 auto; /* 中央揃え */
-  background-color: #ffffcc; /* 薄い黄色 */
-  padding: 10px; /* テキストとコンテナの間隔を設定 */
+  width: 90%;
+  max-width: 600px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  margin: 0 auto;
+  background-color: #ffffcc;
+  padding: 10px;
+  margin-bottom: 20px; /* 問題の下にスペースを追加 */
 }
 
 table {
-  width: 100%;
+  width: 90%; /* 必要に応じて幅を調整 */
+  max-width: 600px; /* 必要に応じて最大幅を調整 */
+  margin: 0 auto;
+  background-color: #ffffff; /* テーブルの背景色を白に設定 */
   border-collapse: collapse;
+  margin-bottom: 20px; /* テーブルの下にスペースを追加 */
 }
 
 table th, table td {
   border: 1px solid #ddd;
   padding: 8px;
-  text-align: center; /* 中央揃え */
+  text-align: center;
 }
 
 table th {
   background-color: #f2f2f2;
 }
+
 
 .option-text {
   margin: 10px 0;
