@@ -1,20 +1,15 @@
 const questions = [...H20_1ch1]; // 質問データを取得
 
 function loadQuestion() {
-    const questionContainer = document.getElementById('question'); // 質問を表示するコンテナ
-    const optionsContainer = document.getElementById('options'); // 選択肢を表示するコンテナ
-    const buttonsContainer = document.getElementById('buttons'); // ボタンを表示するコンテナ
-    const resultContainer = document.getElementById('result'); // 結果を表示するコンテナ
+    let questionContainer = document.getElementById('question'); // 質問を表示するコンテナ
+    let optionsContainer = document.getElementById('options'); // 選択肢を表示するコンテナ
+    let buttonsContainer = document.getElementById('buttons'); // ボタンを表示するコンテナ
+    let resultContainer = document.getElementById('result'); // 結果を表示するコンテナ
 
     questionContainer.innerHTML = ''; // 質問コンテナをクリア
     optionsContainer.innerHTML = ''; // 選択肢コンテナをクリア
     buttonsContainer.innerHTML = ''; // ボタンコンテナをクリア
     resultContainer.innerHTML = ''; // 結果コンテナをクリア
-
-    if (questions.length === 0) {
-        questionContainer.innerHTML = '<p>質問が見つかりませんでした</p>';
-        return;
-    }
 
     let q = questions[Math.floor(Math.random() * questions.length)]; // ランダムな質問を選択
 
@@ -39,13 +34,6 @@ function loadQuestion() {
         questionContainer.innerHTML += tableHTML;
     }
 
-    let isLongOption = q.options.some(option => option.length > 6);
-    if (isLongOption) {
-        optionsContainer.classList.add('vertical-options');
-    } else {
-        optionsContainer.classList.remove('vertical-options');
-    }
-
     // 選択肢を表示する部分
     q.options.forEach((option, index) => {
         if (option.trim() !== '') { // 選択肢のテキストが空でない場合のみ表示
@@ -66,7 +54,7 @@ function loadQuestion() {
 }
 
 function checkAnswer(question, selected) {
-    const resultContainer = document.getElementById('result'); // 結果を表示するコンテナ
+    let resultContainer = document.getElementById('result'); // 結果を表示するコンテナ
     if (selected === question.correct) {
         resultContainer.innerHTML = `<p style="color: green;">正解！</p>`;
     } else {
@@ -75,4 +63,4 @@ function checkAnswer(question, selected) {
 }
 
 // 初回ロード時に質問を表示
-window.addEventListener('load', loadQuestion);
+window.onload = loadQuestion;
