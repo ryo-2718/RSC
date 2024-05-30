@@ -48,17 +48,17 @@ function loadQuestion() {
     for (let i = 0; i < q.options.length; i++) {
         let button = document.createElement('button');
         button.innerText = i + 1;
-        button.onclick = () => checkAnswer(q.correct, i);
+        button.onclick = () => checkAnswer(q, i);
         buttonsContainer.appendChild(button);
     }
 }
 
-function checkAnswer(correct, selected) {
+function checkAnswer(question, selected) {
     let resultContainer = document.getElementById('result'); // 結果を表示するコンテナ
-    if (selected === correct) {
+    if (selected === question.correct) {
         resultContainer.innerHTML = `<p style="color: green;">正解！</p>`;
     } else {
-        resultContainer.innerHTML = `<p style="color: red;">不正解！</p><p>正しい回答は ${correct + 1} 番目: ${questions.find(q => q.correct === correct).options[correct]}</p>`;
+        resultContainer.innerHTML = `<p style="color: red;">不正解！</p><p>正しい回答は ${question.correct + 1} 番目: ${question.options[question.correct]}</p>`;
     }
 }
 
