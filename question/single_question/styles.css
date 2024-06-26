@@ -60,6 +60,7 @@ main {
   margin: 0 auto;
   background-color: #ffffcc;
   padding: 10px;
+  margin-bottom: 20px; /* 問題の下にスペースを追加 */
 }
 
 table {
@@ -83,13 +84,7 @@ table th {
 
 
 .option-text {
-  width: 90%;
-  max-width: 600px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  margin: 0 auto;
-  background-color: #ffffcc;
-  padding: 10px;
+  margin: 10px 0;
 }
 
 button {
@@ -102,7 +97,6 @@ button {
   border: none;
   cursor: pointer;
   width: 50px;
-  margin-top: 20px;
 }
 
 button:hover {
