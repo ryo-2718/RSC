@@ -60,7 +60,6 @@ main {
   margin: 0 auto;
   background-color: #ffffcc;
   padding: 10px;
-  margin-bottom: 20px; /* 問題の下にスペースを追加 */
 }
 
 table {
@@ -91,7 +90,6 @@ table th {
   margin: 0 auto;
   background-color: #ffffcc;
   padding: 10px;
-  margin-bottom: 20px;
 }
 
 button {
@@ -104,6 +102,7 @@ button {
   border: none;
   cursor: pointer;
   width: 50px;
+  margin-top: 20px;
 }
 
 button:hover {
