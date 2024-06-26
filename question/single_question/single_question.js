@@ -1,4 +1,4 @@
-const questions = [...H20_1ch1]; // 質問データを取得
+const questions = [...H20_1ch1,...ch2_1]; // 質問データを取得
 
 function loadQuestion() {
     let questionContainer = document.getElementById('question'); // 質問を表示するコンテナ
