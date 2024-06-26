@@ -18,15 +18,17 @@
             </ul>
         </nav>
     </header>
-    <main>
-        <div id="question-container" class="responsive-container">
-            <div id="question"></div>
-            <div id="buttons"></div>
-            <div id="result"></div>
-            <table id="table-container"></table>
-            <button id="next-question-button" onclick="loadQuestion()">次の問題</button>
-        </div>
-    </main>
+<main>
+  <div id="question-container" class="responsive-container">
+    <div id="question"></div>
+    <div id="options"></div>
+    <div id="buttons"></div>
+    <div id="result"></div>
+    <table id="table-container"></table> <!-- テーブルを問題コンテナの内側に移動 -->
+    <button id="next-question-button" onclick="loadQuestion()">次の問題</button>
+  </div>
+</main>
+
     <script src="https://ryo-2718.github.io/RSC/question/questions/H20-1.js"></script>
     <script src="https://ryo-2718.github.io/RSC/question/questions/ch2_1.js"></script>
     <script src="single_question.js"></script>
