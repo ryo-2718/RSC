@@ -86,9 +86,11 @@ table th {
 .option-text {
   width: 90%;
   max-width: 600px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
   margin: 0 auto;
-  background-color: #ffffff;
-  border-collapse: collapse;
+  background-color: #ffffcc;
+  padding: 10px;
   margin-bottom: 20px;
 }
 
