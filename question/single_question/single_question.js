@@ -1,13 +1,12 @@
-const questions = [...H20_1ch1,...ch2_1]; // 質問データを取得
+const questions = [...H20_1ch1, ...ch2_1]; // 質問データを取得
 
 function loadQuestion() {
     let questionContainer = document.getElementById('question'); // 質問を表示するコンテナ
-    let optionsContainer = document.getElementById('options'); // 選択肢を表示するコンテナ
+    let optionsContainer = document.createElement('div'); // 選択肢を表示するコンテナ
     let buttonsContainer = document.getElementById('buttons'); // ボタンを表示するコンテナ
     let resultContainer = document.getElementById('result'); // 結果を表示するコンテナ
 
     questionContainer.innerHTML = ''; // 質問コンテナをクリア
-    optionsContainer.innerHTML = ''; // 選択肢コンテナをクリア
     buttonsContainer.innerHTML = ''; // ボタンコンテナをクリア
     resultContainer.innerHTML = ''; // 結果コンテナをクリア
 
@@ -23,7 +22,7 @@ function loadQuestion() {
             tableHTML += `<th>${headerItem}</th>`;
         });
         tableHTML += '</tr>';
-        q.table.raws.forEach(row => {
+        q.table.rows.forEach(row => {
             tableHTML += '<tr>';
             row.forEach(cell => {
                 tableHTML += `<td>${cell}</td>`;
@@ -43,6 +42,8 @@ function loadQuestion() {
             optionsContainer.appendChild(optionText);
         }
     });
+
+    questionContainer.appendChild(optionsContainer);
 
     // ボタンを表示する部分
     for (let i = 0; i < q.options.length; i++) {

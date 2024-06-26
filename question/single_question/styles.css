@@ -47,29 +47,27 @@ main {
 }
 
 #question-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  width: 90%;
+  max-width: 600px;
+  background-color: #ffffcc;
+  padding: 10px;
+  margin-bottom: 20px;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  text-align: left;
 }
 
 #question {
-  width: 90%;
-  max-width: 600px;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  margin: 0 auto;
-  background-color: #ffffcc;
-  padding: 10px;
-  margin-bottom: 20px; /* 問題の下にスペースを追加 */
+  margin-bottom: 20px;
 }
 
 table {
-  width: 90%; /* 必要に応じて幅を調整 */
-  max-width: 600px; /* 必要に応じて最大幅を調整 */
+  width: 90%;
+  max-width: 600px;
   margin: 0 auto;
-  background-color: #ffffff; /* テーブルの背景色を白に設定 */
+  background-color: #ffffff;
   border-collapse: collapse;
-  margin-bottom: 20px; /* テーブルの下にスペースを追加 */
+  margin-bottom: 20px;
 }
 
 table th, table td {
@@ -81,7 +79,6 @@ table th, table td {
 table th {
   background-color: #f2f2f2;
 }
-
 
 .option-text {
   margin: 10px 0;
@@ -122,6 +119,6 @@ button:hover {
 
 @media (max-width: 600px) {
     header h1 {
-        font-size: 18px; /* スマホでのフォントサイズ */
+        font-size: 18px;
     }
 }
